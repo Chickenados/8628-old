@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Pushbot: Teleop Tank", group="Pushbot")
-@Disabled
+
 public class PushbotTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
@@ -101,6 +101,23 @@ public class PushbotTeleopTank_Iterative extends OpMode{
     public void loop() {
         double left;
         double right;
+        boolean leftTrigger;
+        boolean rightTrigger;
+
+        // Detect if triggers are pressed and set the variables to reflect their state
+
+        if (gamepad1.left_trigger > 0.3) {
+            leftTrigger = true;
+        } else if (gamepad1.left_trigger <= 0.3) {
+            leftTrigger = false;
+        }
+
+        if (gamepad1.right_trigger > 0.3) {
+            rightTrigger = true;
+
+        } else if (gamepad1.right_trigger <= 0.3) {
+            rightTrigger = false;
+        }
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
         left = -gamepad1.left_stick_y;
@@ -108,10 +125,10 @@ public class PushbotTeleopTank_Iterative extends OpMode{
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        // Use gamepad left & right Bumpers to open and close the claw
-        if (gamepad1.right_bumper)
+        // Use gamepad left & right triggers to open and close the claw
+        if (rightTrigger = true)
             clawOffset += CLAW_SPEED;
-        else if (gamepad1.left_bumper)
+        else if (leftTrigger = true)
             clawOffset -= CLAW_SPEED;
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
@@ -119,10 +136,10 @@ public class PushbotTeleopTank_Iterative extends OpMode{
         robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
         robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
-        // Use gamepad buttons to move the arm up (Y) and down (A)
-        if (gamepad1.y)
+        // Use gamepad buttons to move the arm up (A) and down (B)
+        if (gamepad1.a)
             robot.armMotor.setPower(robot.ARM_UP_POWER);
-        else if (gamepad1.a)
+        else if (gamepad1.b)
             robot.armMotor.setPower(robot.ARM_DOWN_POWER);
         else
             robot.armMotor.setPower(0.0);
