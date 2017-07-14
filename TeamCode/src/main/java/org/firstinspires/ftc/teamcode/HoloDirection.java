@@ -28,7 +28,7 @@ public class HoloDirection {
 
         speed += ySpeed;
         speed -= xSpeed;
-        speed += zAngle;
+        speed -= zAngle;
 
         return (float) Range.clip(speed, -1, 1);
 
@@ -39,7 +39,7 @@ public class HoloDirection {
 
         speed += ySpeed;
         speed += xSpeed;
-        speed -= zAngle;
+        speed += zAngle;
 
         return (float) Range.clip(speed, -1, 1);
 
@@ -50,7 +50,7 @@ public class HoloDirection {
 
         speed += ySpeed;
         speed -= xSpeed;
-        speed -= zAngle;
+        speed += zAngle;
 
         return (float) Range.clip(speed, -1, 1);
 
@@ -61,7 +61,7 @@ public class HoloDirection {
 
         speed += ySpeed;
         speed += xSpeed;
-        speed += zAngle;
+        speed -= zAngle;
 
         return (float) Range.clip(speed, -1, 1);
 
