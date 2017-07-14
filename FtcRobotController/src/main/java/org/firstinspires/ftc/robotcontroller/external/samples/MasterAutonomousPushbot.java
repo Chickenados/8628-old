@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -37,10 +37,9 @@ public abstract class MasterAutonomous extends LinearOpMode{
         gyro = (ModernRoboticsI2cGyro) hardwareMap.gyroSensor.get ("gyro");
 
         robot.leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.leftClaw.setMode(Servo.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightClaw.setMode(Servi.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rightClaw.setMode(Servo.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData(">", "Calibrating Gyro");
         telemetry.update();
