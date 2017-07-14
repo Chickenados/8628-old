@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.Range;
  * Created by Armin on 7/9/17.
  */
 
-public abstract class MasterAutonomous extends LinearOpMode{
+public abstract class MasterAutonomousPushbot extends LinearOpMode{
 
     /*HardwarePushbot robot = new HardwarePushbot ();
     public ModernRoboticsI2cGyro gyro = null;
