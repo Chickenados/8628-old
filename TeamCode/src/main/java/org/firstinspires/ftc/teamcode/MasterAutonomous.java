@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public abstract class MasterAutonomous extends LinearOpMode{
 
-    HardwarePushbot robot = new HardwarePushbot ();
+    /*HardwarePushbot robot = new HardwarePushbot ();
     public ModernRoboticsI2cGyro gyro = null;
 
 
@@ -49,6 +49,6 @@ public abstract class MasterAutonomous extends LinearOpMode{
 
         while
 
-    }
+    }*/
 
 }
