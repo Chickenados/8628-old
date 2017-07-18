@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -18,11 +20,11 @@ public class EggbotTeleop extends OpMode {
 
     DcMotor[] motors = new DcMotor[4];
 
-    float forward;
-    float sideways;
-    float rotation;
-
     HoloDirection direction;
+
+
+    ModernRoboticsI2cColorSensor colorSensor;
+    ModernRoboticsI2cGyro gyro;
 
     public void init(){
 
