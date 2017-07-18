@@ -87,6 +87,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void init_loop() {
+        telemetry.addLine("Ready to run!");
     }
 
     /*
@@ -94,6 +95,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void start() {
+
     }
 
     /*
@@ -157,6 +159,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void stop() {
+
     }
 
 }
