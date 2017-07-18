@@ -95,7 +95,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void start() {
-
+        telemetry.clearAll();
     }
 
     /*
