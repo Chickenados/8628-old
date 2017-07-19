@@ -34,19 +34,7 @@ public class BasicAuto extends LinearOpMode {
 
         //loop();
 
-        double speed = 1;
-
-        FrontLeft.setPower(speed);
-        FrontRight.setPower(speed);
-        BackLeft.setPower(speed);
-        BackRight.setPower(speed);
-
-        sleep(1000);
-
-        FrontLeft.setPower(0);
-        FrontRight.setPower(0);
-        BackLeft.setPower(0);
-        BackRight.setPower(0);
+        robot.destroy(500);
 
         //stop();
 
