@@ -58,16 +58,11 @@ public class EggbotTeleop extends OpMode {
 }
 
 /*
- * Protip:
- *
- *  0    1
- *
- *
- *  3    2
- *
- * motor map  ^
- *
- * We use the correct wheel configuration, x on top, diamond on bottom.
- * The motors are facing inwards, so the reverses are opposite of what you might expect.
- *
+    Front
+   ________
+   |0    1|
+   |      |
+   |3    2|
+   --------
+   Rear
  */

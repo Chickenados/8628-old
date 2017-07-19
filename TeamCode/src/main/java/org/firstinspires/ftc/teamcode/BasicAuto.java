@@ -11,9 +11,9 @@ import com.qualcomm.ftcrobotcontroller.R;
  */
 
 
-@Autonomous(name = "BasicOpMode", group = "Autonomous")
+@Autonomous(name = "BasicAuto", group = "Autonomous")
 
-public class BasicOpMode extends LinearOpMode {
+public class BasicAuto extends LinearOpMode {
 
 
     DcMotor FrontRight;
@@ -26,18 +26,9 @@ public class BasicOpMode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        //init();
+       HardwareBasic robot = new HardwareBasic();
 
-        FrontRight = hardwareMap.dcMotor.get("FrontRight");
-        FrontLeft = hardwareMap.dcMotor.get("FrontLeft");
-        BackRight = hardwareMap.dcMotor.get("BackRight");
-        BackLeft = hardwareMap.dcMotor.get("BackLeft");
-
-        FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        BackRight.setDirection(DcMotorSimple.Direction.FORWARD);
-
+        robot.init(hardwareMap);
 
         waitForStart();
 
