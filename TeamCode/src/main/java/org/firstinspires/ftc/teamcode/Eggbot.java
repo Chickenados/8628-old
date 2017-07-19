@@ -32,17 +32,24 @@ public class Eggbot {
 }
 
 class EggbotData {
-    PID PID;
-    RobotTime Time;
+    EggbotPID PID;
+    EggbotTime Time;
     Drive Drive;
     EggbotData(){
-        PID = new PID();
-        Time = new RobotTime();
+        PID = new EggbotPID();
+        Time = new EggbotTime();
         Drive = new Drive();
     }
 }
 
 class EggbotPID {
+    float TARGET_MODIFIER = 0f;
+    public float turnPrecision = 1f;
+    float ComputedTarget;
+    float Target;
+    float P, I, D;
+    float[] Headings = new float[2];
+    float LastError;
 
 }
 class EggbotTime {
