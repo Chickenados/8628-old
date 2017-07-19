@@ -15,14 +15,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  * Created by Nate on 7/14/17.
  */
 
-@TeleOp(name = "Eggbot Teleop")
+@TeleOp(name = "Eggbot Teleop", group = "Eggbot")
 public class EggbotTeleop extends OpMode {
 
     DcMotor[] motors = new DcMotor[4];
 
     HoloDirection direction;
 
-
+    // unused for now
     ModernRoboticsI2cColorSensor colorSensor;
     ModernRoboticsI2cGyro gyro;
 
@@ -56,3 +56,18 @@ public class EggbotTeleop extends OpMode {
     }
 
 }
+
+/*
+ * Protip:
+ *
+ *  0    1
+ *
+ *
+ *  3    2
+ *
+ * motor map  ^
+ *
+ * We use the correct wheel configuration, x on top, diamond on bottom.
+ * The motors are facing inwards, so the reverses are opposite of what you might expect.
+ *
+ */
