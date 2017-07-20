@@ -22,7 +22,7 @@ public class EggbotTeleop extends OpMode {
 
     HoloDirection direction;
 
-    // unused for now
+    // unused for now - they are on the robot, but we have no autonomous currently.
     ModernRoboticsI2cColorSensor colorSensor;
     ModernRoboticsI2cGyro gyro;
 

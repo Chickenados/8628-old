@@ -15,18 +15,10 @@ import com.qualcomm.ftcrobotcontroller.R;
 
 public class BasicAuto extends LinearOpMode {
 
-
-    DcMotor FrontRight;
-    DcMotor FrontLeft;
-    DcMotor BackRight;
-    DcMotor BackLeft;
-
-
-
     @Override
     public void runOpMode() throws InterruptedException {
 
-       HardwareBasic robot = new HardwareBasic();
+        HardwareBasic robot = new HardwareBasic();
 
         robot.init(hardwareMap);
 
@@ -39,7 +31,4 @@ public class BasicAuto extends LinearOpMode {
         //stop();
 
     }
-
-
 }
-
