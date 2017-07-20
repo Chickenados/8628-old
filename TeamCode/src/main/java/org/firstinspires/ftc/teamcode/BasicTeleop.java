@@ -32,16 +32,21 @@ public class BasicTeleop extends LinearOpMode {
 
         waitForStart();
 
-        leftspeed = gamepad1.left_stick_y;
-        rightspeed = gamepad1.right_stick_y;
+         while (opModeIsActive()) {
 
-        leftspeed = Range.clip(leftspeed, -1, 1);
-        rightspeed = Range.clip(rightspeed, -1, 1);
+            leftspeed = gamepad1.left_stick_y;
+            rightspeed = gamepad1.right_stick_y;
 
-        robot.FrontRight.setPower(rightspeed);
-        robot.BackRight.setPower(rightspeed);
-        robot.FrontLeft.setPower(leftspeed);
-        robot.BackLeft.setPower(leftspeed);
+            leftspeed = Range.clip(leftspeed, -1, 1);
+            rightspeed = Range.clip(rightspeed, -1, 1);
+
+            robot.FrontRight.setPower(rightspeed);
+            robot.BackRight.setPower(rightspeed);
+            robot.FrontLeft.setPower(leftspeed);
+            robot.BackLeft.setPower(leftspeed);
+
+         }
+
 
     }
 }
