@@ -22,6 +22,8 @@ public class BasicColor extends LinearOpMode {
     int red;
     int blue;
     int green;
+    int alpha;
+
 
     double TURN_SPEED = 0.6;
 
@@ -41,6 +43,8 @@ public class BasicColor extends LinearOpMode {
 
             red = robot.colorSensor.red();
             blue = robot.colorSensor.blue();
+            green = robot.colorSensor.green();
+            alpha = robot.colorSensor.alpha();
 
             if (red > 0) {
 
@@ -64,6 +68,17 @@ public class BasicColor extends LinearOpMode {
                 robot.BackRight.setPower(TURN_SPEED);
 
                 sleep(500);
+
+                robot.FrontLeft.setPower(0);
+                robot.BackLeft.setPower(0);
+                robot.FrontRight.setPower(-0);
+                robot.BackRight.setPower(-0);
+
+            } else if (green > 50 && blue > 50 && red > 50) {
+
+                robot.drive(500, 0.6);
+                robot.drive(500, 0.6);
+            } else {
 
                 robot.FrontLeft.setPower(0);
                 robot.BackLeft.setPower(0);

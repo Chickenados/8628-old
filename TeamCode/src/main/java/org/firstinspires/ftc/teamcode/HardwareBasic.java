@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import static android.os.SystemClock.sleep;
 
 /**
- * Created by faithpettis on 7/18/17.
+ * Created by James on 7/18/17.
  */
 
 public class HardwareBasic {
@@ -41,6 +41,10 @@ public class HardwareBasic {
         BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         FrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
         BackRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
@@ -51,6 +55,22 @@ public class HardwareBasic {
         FrontRight.setPower(speed);
         BackLeft.setPower(-speed);
         BackRight.setPower(-speed);
+
+        sleep(time);
+
+        FrontLeft.setPower(0);
+        FrontRight.setPower(0);
+        BackLeft.setPower(0);
+        BackRight.setPower(0);
+
+    }
+
+    public void drive(int time, double speed){
+
+        FrontLeft.setPower(speed);
+        FrontRight.setPower(speed);
+        BackLeft.setPower(speed);
+        BackRight.setPower(speed);
 
         sleep(time);
 
