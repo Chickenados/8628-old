@@ -12,6 +12,17 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Eggbot {
 
+
+    /*
+    * Note to self (and Nate):
+    *
+    * In autonomous, add a condition that if opmode is not running, the motors automatically stop instantly.
+    *
+    * Alternatively, add a stop method which sets motor power to 0.
+    *
+    * This makes the motors stop instantly when we tell them to, not after 3 seconds.
+    *
+    */
     RobotData Data = new RobotData();
 
     LinearOpMode opMode;

@@ -93,6 +93,8 @@ public class PushbotTeleop extends OpMode{
         telemetry.addLine("Ready to run!");
     }
 
+
+
     /*
      * Code to run ONCE when the driver hits PLAY
      */
@@ -108,8 +110,8 @@ public class PushbotTeleop extends OpMode{
     public void loop() {
         double left;
         double right;
-        boolean leftTrigger;
-        boolean rightTrigger;
+        boolean leftTrigger = false;
+        boolean rightTrigger = false;
 
         // Detect if triggers are pressed and set the variables to reflect their state
 
@@ -133,9 +135,9 @@ public class PushbotTeleop extends OpMode{
         robot.rightMotor.setPower(right);
 
         // Use gamepad left & right triggers to open and close the claw
-        if (rightTrigger = true)
+        if (rightTrigger && !leftTrigger)
             clawOffset += CLAW_SPEED;
-        else if (leftTrigger = true)
+        else if (leftTrigger && !rightTrigger)
             clawOffset -= CLAW_SPEED;
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
