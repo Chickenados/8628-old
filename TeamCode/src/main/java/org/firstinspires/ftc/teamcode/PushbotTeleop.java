@@ -118,13 +118,13 @@ public class PushbotTeleop extends OpMode{
         // Detect if triggers are pressed and set the variables to reflect their state
         // We changed triggers to bumpers
 
-        if (gamepad1.left_bumper = true) {
+        if (gamepad1.left_bumper == true) {
             leftBumper = true;
         } else if (gamepad1.left_bumper = false) {
             leftBumper = false;
         }
 
-        if (gamepad1.right_bumper = true) {
+        if (gamepad1.right_bumper == true) {
             rightBumper = true;
 
         } else if (gamepad1.right_bumper = true ) {
@@ -132,9 +132,9 @@ public class PushbotTeleop extends OpMode{
         }
 
         // Use gamepad left & right triggers to open and close the claw
-        if (rightTrigger && !leftTrigger)
+        if (rightBumper && !leftBumper)
             clawOffset += CLAW_SPEED;
-        else if (leftTrigger && !rightTrigger)
+        else if (leftBumper && !rightBumper)
             clawOffset -= CLAW_SPEED;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
