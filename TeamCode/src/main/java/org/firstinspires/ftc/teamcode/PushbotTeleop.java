@@ -127,7 +127,7 @@ public class PushbotTeleop extends OpMode{
         if (gamepad1.right_bumper == true) {
             rightBumper = true;
 
-        } else if (gamepad1.right_bumper = true ) {
+        } else if (gamepad1.right_bumper = false ) {
             rightBumper = false;
         }
 
