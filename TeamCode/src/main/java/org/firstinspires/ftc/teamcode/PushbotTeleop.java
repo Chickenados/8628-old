@@ -57,7 +57,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Pushbot: Teleop Tank", group="Pushbot")
+@TeleOp(name="Pushbot: Teleop", group="Pushbot")
 
 public class PushbotTeleop extends OpMode{
 
@@ -112,21 +112,30 @@ public class PushbotTeleop extends OpMode{
         double right;
         boolean leftTrigger = false;
         boolean rightTrigger = false;
+        boolean leftBumper = false;
+        boolean rightBumper = false;
 
         // Detect if triggers are pressed and set the variables to reflect their state
+        // We changed triggers to bumpers
 
-        if (gamepad1.left_trigger > 0.3) {
-            leftTrigger = true;
-        } else if (gamepad1.left_trigger <= 0.3) {
-            leftTrigger = false;
+        if (gamepad1.left_bumper == true) {
+            leftBumper = true;
+        } else if (gamepad1.left_bumper = false) {
+            leftBumper = false;
         }
 
-        if (gamepad1.right_trigger > 0.3) {
-            rightTrigger = true;
+        if (gamepad1.right_bumper == true) {
+            rightBumper = true;
 
-        } else if (gamepad1.right_trigger <= 0.3) {
-            rightTrigger = false;
+        } else if (gamepad1.right_bumper = false ) {
+            rightBumper = false;
         }
+
+        // Use gamepad left & right triggers to open and close the claw
+        if (rightBumper && !leftBumper)
+            clawOffset += CLAW_SPEED;
+        else if (leftBumper && !rightBumper)
+            clawOffset -= CLAW_SPEED;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
         left = gamepad1.left_stick_y;
@@ -136,11 +145,7 @@ public class PushbotTeleop extends OpMode{
         robot.leftMotor.setPower(left);
         robot.rightMotor.setPower(right);
 
-        // Use gamepad left & right triggers to open and close the claw
-        if (rightTrigger && !leftTrigger)
-            clawOffset += CLAW_SPEED;
-        else if (leftTrigger && !rightTrigger)
-            clawOffset -= CLAW_SPEED;
+
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         clawOffset = Range.clip(clawOffset, -0.5, 0.5);
