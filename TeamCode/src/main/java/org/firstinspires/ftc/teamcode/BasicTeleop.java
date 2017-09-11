@@ -38,8 +38,8 @@ public class BasicTeleop extends LinearOpMode {
             leftspeed = gamepad1.left_stick_y;
             rightspeed = gamepad1.right_stick_y;
 
-            leftspeed = leftspeed * 0.6;
-            rightspeed = rightspeed * 0.6;
+            leftspeed = leftspeed;
+            rightspeed = rightspeed;
 
             leftspeed = Range.clip(leftspeed, -1, 1);
             rightspeed = Range.clip(rightspeed, -1, 1);
