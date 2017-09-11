@@ -18,14 +18,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  * Created by Nate on 7/14/17.
  */
 
-@TeleOp(name = "Eggbot Teleop")
+@TeleOp(name = "Eggbot Teleop", group = "Eggbot")
 public class EggbotTeleop extends OpMode {
 
     DcMotor[] motors = new DcMotor[4];
 
     HoloDirection direction;
 
-
+    // unused for now - they are on the robot, but we have no autonomous currently.
     ModernRoboticsI2cColorSensor colorSensor;
     ModernRoboticsI2cGyro gyro;
 
@@ -76,3 +76,13 @@ public class EggbotTeleop extends OpMode {
     }
 
 }
+
+/*
+    Front
+   ________
+   |0    1|
+   |      |
+   |3    2|
+   --------
+   Rear
+ */
