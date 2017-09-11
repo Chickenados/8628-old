@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.adafruit.AdafruitBNO055IMU;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -26,7 +29,20 @@ public class EggbotTeleop extends OpMode {
     ModernRoboticsI2cColorSensor colorSensor;
     ModernRoboticsI2cGyro gyro;
 
+    BNO055IMU imu;
+
     public void init(){
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
+
+
+
 
         motors[0] = hardwareMap.dcMotor.get("FrontLeft");
         motors[1] = hardwareMap.dcMotor.get("FrontRight");
@@ -37,10 +53,14 @@ public class EggbotTeleop extends OpMode {
         motors[3].setDirection(DcMotorSimple.Direction.REVERSE);
 
         direction = new HoloDirection(0, 0, 0);
+
+
     }
 
     public void loop(){
 
+        telemetry.addData("", imu.getAngularOrientation());
+        telemetry.update();
         move(gamepad1);
 
     }
