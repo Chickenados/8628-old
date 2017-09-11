@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -32,7 +33,7 @@ public class Robot {
 
     public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
 
-        
+
 
 
     }
@@ -54,10 +55,12 @@ class RobotData {
     PID PID;
     RobotTime Time;
     Drive Drive;
+    Sensor Sensor;
     RobotData(){
         PID = new PID();
         Time = new RobotTime();
         Drive = new Drive();
+        Sensor = new Sensor();
     }
 }
 
@@ -101,4 +104,8 @@ class Drive {
     DcMotor m3;
 
     int EncoderCount;
+}
+
+class Sensor {
+    ColorSensor color;
 }
