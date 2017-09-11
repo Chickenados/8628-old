@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -31,50 +33,21 @@ public class Robot {
 
     public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
 
-        Data.Time = new RobotTime();
 
-        float StartTime = Data.Time.CurrentTime();
-        float startPosition = Data.Drive.m0.getCurrentPosition();
-
-        float LoopTime = Data.Time.CurrentTime();
-        float SystemTime = System.currentTimeMillis();
-
-        while(Math.abs(startPosition - Data.Drive.m0.getCurrentPosition()) < Math.abs(Rotations) * Data.Drive.EncoderCount && opMode.opModeIsActive()){
-
-            if(StartTime + Timeout < Data.Time.CurrentTime()){
-                break;
-            }
-
-            SystemTime = System.currentTimeMillis() - SystemTime;
-
-            CalculatePID(LoopTime, tm);
-        }
 
 
     }
 
 
-    private void CalculatePID(float loopTime, Telemetry tm){
+    private void CalculatePID(float requestedGyro, Telemetry tm){
 
-        // 'I' will be the previous error divided by the loop time in seconds.
-
-        Data.PID.I = Data.PID.P/(loopTime/1000);
-
-        // Set our P, I, and D values.
-        // `P` will be the ComputedTarget - Target
-
-        Data.PID.P = Data.PID.Headings[1] - Data.PID.Target;
-
-        // `D` will be the difference of the ComputedTarget and the Derivative average divided by
-        // the time since the last loop in seconds multiplied by one plus half of the size of
-        // the Derivative data set size.
-
-        Data.PID.D = (Data.PID.LastError - Data.PID.P)/(loopTime/1000);
-
-        //Set the last error to be what the error was in this loop.
-        Data.PID.LastError = Data.PID.P;
-
+        Data.PID.error = requestedGyro;
+        Data.PID.acumError = Data.PID.error;
+        Data.PID.deriv = Data.PID.lastError;
+        Data.PID.lastError = Data.PID.error;
+        Data.PID.gyroPower = (Data.PID.error * Data.PID.Kp) + (Data.PID.deriv * Data.PID.Kd) + (Data.PID.acumError * Data.PID.Ki);
     }
+
 
 }
 
@@ -82,21 +55,23 @@ class RobotData {
     PID PID;
     RobotTime Time;
     Drive Drive;
+    Sensor Sensor;
     RobotData(){
         PID = new PID();
         Time = new RobotTime();
         Drive = new Drive();
+        Sensor = new Sensor();
     }
 }
 
 class PID {
-    float TARGET_MODIFIER = 0f;
-    public float turnPrecision = 1f;
-    float ComputedTarget;
     float Target;
-    float P, I, D;
-    float[] Headings = new float[2];
-    float LastError;
+    float error;
+    float deriv;
+    float acumError;
+    float Kp = 0.5f, Ki = 0.001f, Kd = 0.3f;
+    float lastError;
+    float gyroPower;
 }
 class RobotTime {
     private ElapsedTime ProgramTime;
@@ -129,4 +104,8 @@ class Drive {
     DcMotor m3;
 
     int EncoderCount;
+}
+
+class Sensor {
+    ColorSensor color;
 }
