@@ -31,6 +31,7 @@ public class Robot {
 
     }
 
+<<<<<<< HEAD
     public int[] SenseColor(){
         int[] rgb = new int[3];
 
@@ -45,6 +46,9 @@ public class Robot {
 
     public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
 
+=======
+    public void Straight(float Rotations, int Timeout, Telemetry tm){
+>>>>>>> 31c2bac3d585c6189661bceb4ef154f2e96224dc
 
 
 
