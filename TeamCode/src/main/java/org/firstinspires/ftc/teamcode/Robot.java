@@ -31,8 +31,7 @@ public class Robot {
 
     }
 
-    public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
-
+    public void Straight(float Rotations, int Timeout, Telemetry tm){
 
 
 
