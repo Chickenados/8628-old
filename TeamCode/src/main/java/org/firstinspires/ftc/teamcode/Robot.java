@@ -47,6 +47,19 @@ public class Robot {
         Data.Drive.m3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+
+    public int[] SenseColor(){
+        int[] rgb = new int[3];
+
+        rgb[0] = Data.Sensor.color.red();
+        rgb[1] = Data.Sensor.color.blue();
+        rgb[2] = Data.Sensor.color.green();
+        rgb[3] = Data.Sensor.color.alpha();
+
+        return rgb;
+    }
+
+
     // Method for moving in a line at a specific angle
     public void forward(int rotations, int angle){
 
@@ -134,4 +147,5 @@ class Drive {
 class Sensor {
     ColorSensor color;
     BNO055IMU imu;
+
 }
