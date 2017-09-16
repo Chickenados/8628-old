@@ -31,6 +31,18 @@ public class Robot {
 
     }
 
+    public int[] SenseColor(){
+        int[] rgb = new int[3];
+
+        rgb[0] = Data.Sensor.color.red();
+        rgb[1] = Data.Sensor.color.blue();
+        rgb[2] = Data.Sensor.color.green();
+        rgb[3] = Data.Sensor.color.alpha();
+
+        return rgb;
+    }
+
+
     public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
 
 
@@ -108,4 +120,6 @@ class Drive {
 
 class Sensor {
     ColorSensor color;
+
+
 }

@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by Nate on 7/14/17.
@@ -28,6 +29,8 @@ public class EggbotTeleop extends OpMode {
     // unused for now - they are on the robot, but we have no autonomous currently.
     ModernRoboticsI2cColorSensor colorSensor;
     ModernRoboticsI2cGyro gyro;
+
+    Servo servo;
 
     BNO055IMU imu;
 
@@ -48,6 +51,8 @@ public class EggbotTeleop extends OpMode {
         motors[1] = hardwareMap.dcMotor.get("FrontRight");
         motors[2] = hardwareMap.dcMotor.get("BackRight");
         motors[3] = hardwareMap.dcMotor.get("BackLeft");
+        servo = hardwareMap.servo.get("JewelServo");
+
 
         motors[0].setDirection(DcMotorSimple.Direction.REVERSE);
         motors[3].setDirection(DcMotorSimple.Direction.REVERSE);
@@ -63,6 +68,14 @@ public class EggbotTeleop extends OpMode {
         telemetry.update();
         move(gamepad1);
 
+        if(gamepad1.a){
+            servo.setPosition(50);
+
+        }
+        if(gamepad1.b){
+            servo.setPosition(0);
+        }
+
     }
 
     public void move(Gamepad pad){
@@ -74,6 +87,8 @@ public class EggbotTeleop extends OpMode {
         motors[3].setPower(direction.backLeftSpeed());
 
     }
+
+
 
 }
 
