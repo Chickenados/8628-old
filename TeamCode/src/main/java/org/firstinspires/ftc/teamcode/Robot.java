@@ -18,7 +18,7 @@ public class Robot {
 
     LinearOpMode opMode;
 
-    public Robot(LinearOpMode op, DcMotor m0, DcMotor m1, DcMotor m2, DcMotor m3, Telemetry tm){
+    public Robot(LinearOpMode op, DcMotor m0, DcMotor m1, DcMotor m2, DcMotor m3, BNO055IMU imu, Telemetry tm){
 
         opMode = op;
 
@@ -29,16 +29,40 @@ public class Robot {
 
         Data.Drive.EncoderCount = 28;
 
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+
+        Data.Sensor.imu = imu;
+        Data.Sensor.imu.initialize(parameters);
+
     }
 
-    public void Straight(float Rotations, float[] movement, int Timeout, Telemetry tm){
+    //Runs before each opmode starts
+    public void init(){
+        Data.Drive.m0.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Data.Drive.m1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Data.Drive.m2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Data.Drive.m3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    // Method for moving in a line at a specific angle
+    public void forward(int rotations, int angle){
+
+        int startpos = Data.Drive.m0.getCurrentPosition();
+        int distance = 0;
+
+        while(distance <= rotations){
 
 
+
+        }
 
     }
 
 
-    private void CalculatePID(float requestedGyro, Telemetry tm){
+    private void CalculatePID(float requestedGyro){
 
         Data.PID.error = requestedGyro;
         Data.PID.acumError = Data.PID.error;
@@ -109,4 +133,5 @@ class Drive {
 
 class Sensor {
     ColorSensor color;
+    BNO055IMU imu;
 }
